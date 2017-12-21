@@ -22,3 +22,6 @@ msvc/ipch/
 *.opensdf
 *.sdf
 *~
+build/
+src/dfu-util-stamp/
+tmp/
