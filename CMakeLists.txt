@@ -12,13 +12,7 @@ ExternalProject_Add(
   BUILD_IN_SOURCE 1
 )
 
-set(DFU_UTIL_BINARIES 
-  ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/bin/dfu-util 
-  ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/bin/dfu-prefix 
-  ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/bin/dfu-suffix 
-)
-
-install(FILES ${DFU_UTIL_BINARIES} DESTINATION bin/)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/ DESTINATION /usr/local)
 
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_NAME ${PROJECT_NAME})
