@@ -15,13 +15,14 @@ add_custom_command(
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure --prefix=/usr/local
   COMMAND $(MAKE)
+  COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/pkg
   COMMAND $(MAKE) DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/pkg install
   COMMAND touch ${CMAKE_CURRENT_BINARY_DIR}/.stamp
 )
 
 # create a nice target
 add_custom_target(
-  dfu-util
+  dfu-util ALL
   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/.stamp
 )
 
