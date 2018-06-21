@@ -34,9 +34,9 @@ add_custom_target(
 
 # install to dfu-util component
 install(
-  COMPONENT dfu-util
   DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/pkg/
   DESTINATION /
+  COMPONENT dfu-util
   USE_SOURCE_PERMISSIONS)
 
 add_package_content(
