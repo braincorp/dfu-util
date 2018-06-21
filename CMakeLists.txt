@@ -12,5 +12,11 @@ ExternalProject_Add(
   BUILD_IN_SOURCE 1
 )
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/ DESTINATION /usr/local USE_SOURCE_PERMISSIONS COMPONENT dfu-util)
+add_package_content(
+  dfu-util
+  DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/dfu-util/
+  DESTINATION /usr/local)
+add_package_build_dependencies(
+  dfu-util dfu-util)
+add_debian_package(dfu-util)
 
