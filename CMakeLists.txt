@@ -32,4 +32,16 @@ add_custom_target(
 )
 
 # install to dfu-util component
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/pkg/ DESTINATION / USE_SOURCE_PERMISSIONS COMPONENT dfu-util)
+install(
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/pkg/
+  DESTINATION /
+  COMPONENT dfu-util
+  USE_SOURCE_PERMISSIONS)
+
+add_package_content(
+  dfu-util
+  DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/pkg/
+  DESTINATION /)
+add_package_build_dependencies(
+  dfu-util dfu-util)
+add_debian_package(dfu-util)
