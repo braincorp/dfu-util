@@ -3,17 +3,18 @@ cmake_minimum_required (VERSION 3.5)
 
 # first generate ./configure for autotools
 add_custom_command(
-  OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/configure
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/autogen.sh 
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/configure
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+  COMMAND cmake -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR} .
+  COMMAND ./autogen.sh
 )
 
 # generate our output
 add_custom_command(
   OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/.stamp
-  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/configure
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/configure
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/configure --prefix=/usr/local
+  COMMAND ./configure --prefix=/usr/local
   COMMAND $(MAKE)
   COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/pkg
   COMMAND $(MAKE) DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/pkg install
